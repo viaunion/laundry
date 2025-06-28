@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Order - LaundryPro</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="/" class="nav-logo">LaundryPro</a>
+                <div class="nav-menu">
+                    <a href="dashboard.html" class="nav-btn">Dashboard</a>
+                    <button id="logoutBtn" class="nav-btn">Logout</button>
+                    <span id="userGreeting"></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="mainContent">
+            <!-- Service Selection -->
+            <div id="serviceSection" class="service-container">
+                <h2>Select Your Service</h2>
+                <div class="service-options">
+                    <div class="service-option" data-service="wash-fold">
+                        <h3>Wash & Fold</h3>
+                        <p class="price">$1.99 per lb</p>
+                        <p>Standard 2-3 day service</p>
+                    </div>
+                    <div class="service-option" data-service="express-wash-fold">
+                        <h3>Express Wash & Fold</h3>
+                        <p class="price">$2.99 per lb</p>
+                        <p>24-hour turnaround</p>
+                    </div>
+                    <div class="service-option" data-service="dry-cleaning">
+                        <h3>Dry Cleaning</h3>
+                        <p class="price">$11.99 per item</p>
+                        <p>Professional dry cleaning</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weight/Items Section -->
+            <div id="itemsSection" class="items-container" style="display: none;">
+                <h2 id="itemsTitle">Estimate Your Items</h2>
+                
+                <!-- Weight estimation for wash & fold -->
+                <div id="weightSection" class="weight-section">
+                    <div class="form-group">
+                        <label for="estimatedWeight">Estimated Weight (lbs)</label>
+                        <input type="number" id="estimatedWeight" min="1" max="50" step="0.5" value="5">
+                        <small>Average load is 8-12 lbs</small>
+                    </div>
+                </div>
+
+                <!-- Item selection for dry cleaning -->
+                <div id="dryCleanSection" class="dry-clean-section" style="display: none;">
+                    <div class="dry-clean-items">
+                        <div class="item-selector">
+                            <label>Suit or Jacket</label>
+                            <input type="number" data-item="suit-jacket" min="0" value="0">
+                        </div>
+                        <div class="item-selector">
+                            <label>Leather</label>
+                            <input type="number" data-item="leather" min="0" value="0">
+                        </div>
+                        <div class="item-selector">
+                            <label>Furs</label>
+                            <input type="number" data-item="furs" min="0" value="0">
+                        </div>
+                        <div class="item-selector">
+                            <label>Dress or Gown</label>
+                            <input type="number" data-item="dress-gown" min="0" value="0">
+                        </div>
+                        <div class="item-selector">
+                            <label>Shirt</label>
+                            <input type="number" data-item="shirt" min="0" value="0">
+                        </div>
+                        <div class="item-selector">
+                            <label>Pants</label>
+                            <input type="number" data-item="pants" min="0" value="0">
+                        </div>
+                        <div class="item-selector">
+                            <label>Sweater</label>
+                            <input type="number" data-item="sweater" min="0" value="0">
+                        </div>
+                        <div class="item-selector">
+                            <label>Other</label>
+                            <input type="number" data-item="other" min="0" value="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pickup Date and Time Selection -->
+                <div class="pickup-section">
+                    <h3>Pickup Date & Time</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pickupDate">Pickup Date</label>
+                            <input type="date" id="pickupDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickupTime">Pickup Time</label>
+                            <select id="pickupTime" required>
+                                <option value="">Select time</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="delivery-info">
+                        <p><strong>Estimated Delivery:</strong> <span id="estimatedDelivery">Select pickup date and time</span></p>
+                    </div>
+                </div>
+
+                <div class="pricing-preview">
+                    <h3>Estimated Total</h3>
+                    <div id="pricingBreakdown">
+                        <div class="price-line">
+                            <span>Subtotal:</span>
+                            <span id="subtotalAmount">$0.00</span>
+                        </div>
+                        <div class="price-line">
+                            <span>Tax:</span>
+                            <span id="taxAmount">$0.00</span>
+                        </div>
+                        <div class="price-line total">
+                            <span>Total:</span>
+                            <span id="totalAmount">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="continueToPayment" class="form-btn">Continue to Payment</button>
+            </div>
+
+            <!-- Payment Section -->
+            <div id="paymentSection" class="payment-container" style="display: none;">
+                <h2>Payment Information</h2>
+                <div class="payment-summary">
+                    <h3>Order Summary</h3>
+                    <div id="orderSummary"></div>
+                </div>
+                <div class="payment-form">
+                    <div id="card-element">
+                        <!-- Stripe Elements will create form elements here -->
+                    </div>
+                    <div id="card-errors" role="alert"></div>
+                    <button id="submitPayment" class="form-btn">Complete Order</button>
+                </div>
+            </div>
+
+            <!-- Order Confirmation Section -->
+            <div id="confirmationSection" class="confirmation-container" style="display: none;">
+                <div class="success-icon">✓</div>
+                <h2>Order Confirmed!</h2>
+                <p>Your laundry order has been successfully placed.</p>
+                <div id="orderDetails"></div>
+                <a href="dashboard.html" class="form-btn">Back to Dashboard</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script defer src="/__/firebase/11.9.1/firebase-app-compat.js"></script>
+    <script defer src="/__/firebase/11.9.1/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/11.9.1/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/11.9.1/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    
+    <!-- App JavaScript -->
+    <script src="js/auth.js"></script>
+    <script src="js/new-order.js"></script>
+</body>
+</html>

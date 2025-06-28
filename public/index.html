@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaundryPro - Professional Laundry Service</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Material Design 3 Top App Bar -->
+        <header class="md-top-app-bar">
+            <div class="md-top-app-bar-title">LaundryPro</div>
+            <div style="display: flex; gap: 8px;">
+                <a href="login.html" class="md-outlined-button">Login</a>
+                <a href="signup.html" class="md-filled-button">Sign Up</a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1 class="hero-title">Professional Laundry Service</h1>
+                <p class="hero-subtitle">Convenient pickup and delivery for all your laundry needs</p>
+                <a href="signup.html" class="md-filled-button" style="padding: 12px 32px; font-size: 16px;">Get Started</a>
+            </section>
+
+            <!-- Service Cards -->
+            <section class="service-grid">
+                <div class="service-card">
+                    <div class="service-card-title">Wash & Fold</div>
+                    <div class="service-card-price">$1.99/lb</div>
+                    <div class="service-card-description">Standard service with 2-3 day turnaround. Perfect for everyday laundry needs.</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card-title">Express Service</div>
+                    <div class="service-card-price">$2.99/lb</div>
+                    <div class="service-card-description">24-hour turnaround for urgent needs. Same premium quality, faster delivery.</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card-title">Dry Cleaning</div>
+                    <div class="service-card-price">From $8.99</div>
+                    <div class="service-card-description">Professional dry cleaning for delicate fabrics and formal wear.</div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="md-card" style="padding: 32px; margin-bottom: 32px;">
+                <h2 style="font-family: var(--md-sys-typescale-headline-medium-font); font-size: var(--md-sys-typescale-headline-medium-size); color: var(--md-sys-color-on-surface); margin-bottom: 24px; text-align: center;">Why Choose LaundryPro?</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
+                    <div style="text-align: center;">
+                        <div style="width: 56px; height: 56px; background-color: var(--md-sys-color-primary-container); border-radius: var(--md-sys-shape-corner-large); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--md-sys-color-on-primary-container);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h3 style="font-family: var(--md-sys-typescale-title-large-font); font-size: var(--md-sys-typescale-title-large-size); color: var(--md-sys-color-on-surface); margin-bottom: 8px;">Quality Guaranteed</h3>
+                        <p style="color: var(--md-sys-color-on-surface-variant);">Professional cleaning with 100% satisfaction guarantee</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 56px; height: 56px; background-color: var(--md-sys-color-secondary-container); border-radius: var(--md-sys-shape-corner-large); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--md-sys-color-on-secondary-container);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+                            </svg>
+                        </div>
+                        <h3 style="font-family: var(--md-sys-typescale-title-large-font); font-size: var(--md-sys-typescale-title-large-size); color: var(--md-sys-color-on-surface); margin-bottom: 8px;">Fast Turnaround</h3>
+                        <p style="color: var(--md-sys-color-on-surface-variant);">Quick processing with flexible pickup and delivery</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 56px; height: 56px; background-color: var(--md-sys-color-tertiary-container); border-radius: var(--md-sys-shape-corner-large); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--md-sys-color-on-tertiary-container);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3 style="font-family: var(--md-sys-typescale-title-large-font); font-size: var(--md-sys-typescale-title-large-size); color: var(--md-sys-color-on-surface); margin-bottom: 8px;">Premium Care</h3>
+                        <p style="color: var(--md-sys-color-on-surface-variant);">Eco-friendly products and gentle fabric treatment</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section style="text-align: center; padding: 32px 0;">
+                <h2 style="font-family: var(--md-sys-typescale-headline-medium-font); font-size: var(--md-sys-typescale-headline-medium-size); color: var(--md-sys-color-on-surface); margin-bottom: 16px;">Ready to get started?</h2>
+                <p style="color: var(--md-sys-color-on-surface-variant); margin-bottom: 32px;">Join thousands of satisfied customers who trust LaundryPro</p>
+                <a href="signup.html" class="md-filled-button" style="padding: 12px 32px; font-size: 16px;">Create Account</a>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script defer src="/__/firebase/11.9.1/firebase-app-compat.js"></script>
+    <script defer src="/__/firebase/11.9.1/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/11.9.1/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/11.9.1/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    
+    <!-- App JavaScript -->
+    <script src="js/auth.js"></script>
+</body>
+</html>
